@@ -368,21 +368,31 @@ the output tree, and they are stable across configurations. That is what makes
 
 ### Performance
 
-The audit layer is not free. Measured on this machine (Node 22, jsdom 26,
-DOMPurify 3.4.17, 15 runs, median):
+The audit layer is not free. The honest summary is a **ratio**, not a
+millisecond figure: the audit costs roughly **2.8×–3.7×** the plain
+sanitization time, and that ratio is what stays stable.
 
-| Payload | DOMPurify alone | purifytrace | Ratio |
-|---|---|---|---|
-| 1 element | 0.42 ms | 1.52 ms | 3.6× |
-| 100 elements | 5.01 ms | 15.88 ms | 3.2× |
-| 2000 elements | 54.62 ms | 159.60 ms | 2.9× |
+| Payload | Ratio (observed range) |
+|---|---|
+| 1 element | 2.9× – 3.7× |
+| 100 elements | 3.1× – 3.6× |
+| 2000 elements | 2.8× – 3.2× |
 
-The overhead is roughly constant in the number of elements, because the extra
-work is one tree snapshot plus one independent parse of the output. If you
-need sanitization without an audit, use `sanitize()` — it has the same
+Absolute times are deliberately not quoted to two decimals. On the machine
+these numbers came from, the *same* 2000-element case measured 54.6 ms on one
+run and 100.4 ms on another — a 1.8× swing from machine load alone. Any single
+timing run can therefore support the opposite conclusion, which is why only
+the ratio is reported.
+
+The ratio is roughly constant in the number of elements, because the extra
+work is one tree snapshot plus one independent parse of the output.
+
+`npm run bench` reproduces the measurement (15 runs, median). Run it on your
+own hardware before making a decision — this table is indicative, not a
+benchmark guarantee.
+
+If you need sanitization without an audit, use `sanitize()`; it has the same
 overhead profile as the plain DOMPurify call plus a hook dispatch.
-
-`npm run bench` reproduces the table.
 
 ---
 

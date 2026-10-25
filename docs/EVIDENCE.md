@@ -212,14 +212,21 @@ bookkeeping comparison and the exclusion is reported explicitly
 $ npm run bench
 ```
 
-15 runs, median, Node 22 / jsdom 26 / DOMPurify 3.4.17:
+15 runs, median, Node 22 / jsdom 26 / DOMPurify 3.4.17.
 
-| Payload | DOMPurify alone | purifytrace | Ratio |
+Absolute times from three separate runs of the same script, showing how much
+the numbers move on an unchanged machine:
+
+| Payload | Run A (plain → audit) | Run B | Run C |
 |---|---|---|---|
-| 1 element | 0.42 ms | 1.52 ms | 3.6× |
-| 100 elements | 5.01 ms | 15.88 ms | 3.2× |
-| 2000 elements | 54.62 ms | 159.60 ms | 2.9× |
-| 32-payload corpus | 0.40 ms | 1.29 ms | 3.3× |
+| 1 element | 0.42 → 1.52 ms | 0.53 → 1.95 ms | 0.42 → 1.44 ms |
+| 100 elements | 5.01 → 15.88 ms | 5.11 → 18.41 ms | 4.03 → 12.94 ms |
+| 2000 elements | 54.62 → 159.60 ms | 100.42 → 318.83 ms | 58.07 → 160.74 ms |
+
+The 2000-element case alone varies by 1.8× between runs. That is why the
+project reports the **ratio** (2.8×–3.7×) rather than a millisecond figure: a
+single timing run can support the opposite conclusion. No performance claim in
+this document or the README is used as a CI gate.
 
 Two optimizations were driven by measurement rather than guesswork, and both
 were confirmed by a CPU profile (`node --cpu-prof`):
