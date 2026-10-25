@@ -1,5 +1,8 @@
 # purifytrace
 
+[![CI](https://github.com/llinok111/purifytrace/actions/workflows/ci.yml/badge.svg)](https://github.com/llinok111/purifytrace/actions/workflows/ci.yml)
+[![demo](https://img.shields.io/badge/demo-live-7aa2f7)](https://llinok111.github.io/purifytrace/demo/)
+
 **An explainable audit trail for DOMPurify.** It answers the three questions
 `DOMPurify.removed` cannot:
 
@@ -303,6 +306,18 @@ NEWLY DROPPED
 A policy change should be reviewed by its **delta**, not by re-reading the
 whole trail. The diff keys on the recorded path, which is stable across
 configurations (see the note on paths below).
+
+---
+
+## Demo
+
+A static, offline demo of the audit trail over the 32-payload corpus:
+
+**https://llinok111.github.io/purifytrace/demo/**
+
+Every number on that page comes from the same code in this repository, run at
+build time (`npm run demo`). The page makes no network requests and has no
+runtime dependency.
 
 ---
 

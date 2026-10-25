@@ -302,7 +302,53 @@ This gate runs in CI on every matrix entry.
 
 ---
 
-## 12. Test suite
+## 12. Demo page, verified against the live deployment
+
+The demo is not a mockup: it is the same audit code, run over the same corpus,
+with the results baked into `demo/data.js` at build time.
+
+Local capture and live capture are **pixel-identical** (sha1 of the PNG is the
+same for both), which is the strongest available evidence that the deployed
+page is the one that was verified locally.
+
+```bash
+$ node scripts/verify-demo.mjs    # local file:// render
+{ "status": 200, "payloads": 32, "files": 32, "panels": 4, "stats": 6,
+  "eventRows": 1, "consoleErrors": [], "failedRequests": [],
+  "externalResources": [], "problems": [] }
+
+$ # live https://llinok111.github.io/purifytrace/demo/
+{ "status": 200, "payloads": 32, "files": 32, "panels": 4, "stats": 6,
+  "rows": 1, "activeFile": "03-event-handler.html",
+  "externalRequests": [], "errors": [], "failed": [] }
+
+$ sha1sum shots/live-demo.png shots/demo.png
+1e480e373a5027d24b13ca369d1b92d4ce5fa6cd *live-demo.png
+1e480e373a5027d24b13ca369d1b92d4ce5fa6cd *demo.png
+```
+
+Because the page is dark and uses a single accent hue, the generic
+"distinct colours ≥ 200" blank-frame heuristic flags it as SUSPECT even when
+fully rendered. The check that actually discriminates is per-region ink
+coverage (fraction of pixels differing from the region's own background by
+more than 18 luma):
+
+```
+  header                     ink= 1.83%  distinct_luma=101  OK
+  sidebar (file list)        ink= 6.66%  distinct_luma= 43  OK
+  stat boxes                 ink= 4.86%  distinct_luma=108  OK
+  input panel                ink= 2.23%  distinct_luma= 57  OK
+  output panel               ink= 6.56%  distinct_luma= 91  OK
+  events table               ink= 0.54%  distinct_luma= 37  OK
+```
+
+All six regions carry content; none is blank. The demo makes zero external
+requests — `performance.getEntriesByType('resource')` filtered to non-demo
+origins is empty.
+
+---
+
+## 13. Test suite
 
 ```bash
 $ npm test
