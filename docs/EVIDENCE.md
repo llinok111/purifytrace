@@ -348,7 +348,43 @@ origins is empty.
 
 ---
 
-## 13. Test suite
+## 13. A real defect found by the cross-platform CI matrix
+
+The first CI run failed on **Windows + Node 18** and **Windows + Node 20** while
+passing on all three Ubuntu entries and on Windows + Node 22. Local runs (Node
+22) were green throughout, so this was invisible without the matrix.
+
+Log excerpt (`windows-latest`, Node 20.20.2):
+
+```
+> purifytrace@0.1.0 test
+> node --test test/*.test.mjs
+Could not find 'D:\a\purifytrace\purifytrace\test\*.test.mjs'
+##[error]Process completed with exit code 1.
+```
+
+**Root cause.** `npm test` relied on the shell to expand `test/*.test.mjs`:
+
+1. GitHub's Windows runner uses **PowerShell**, which does not expand
+   wildcards for native commands — the literal `test/*.test.mjs` is passed
+   through.
+2. Node's own test-glob expansion only arrived in **v22**. On Node 18 and 20
+   the literal path is treated as a file name and does not exist.
+
+So the suite only ever ran on Node 22. A green local run on Node 22 could not
+have caught it.
+
+**Fix.** `scripts/run-tests.mjs` enumerates the test files with `fs` and passes
+an explicit list to the Node test runner. It also gates `--test-reporter` on the
+running version (the flag landed in 19.6 / 18.17), so older Node builds get the
+default TAP reporter instead of an "unknown option" error.
+
+**Verification.** Node 22.22.2 and Node 24.15.0 both run the fixed runner
+locally with 61/61 passing; the matrix re-run is the authoritative check.
+
+---
+
+## 14. Test suite
 
 ```bash
 $ npm test

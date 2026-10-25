@@ -37,7 +37,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test test/*.test.mjs",
+    "test": "node scripts/run-tests.mjs",
     "corpus": "node scripts/run-corpus.mjs",
     "bench": "node scripts/bench.mjs",
     "demo": "node scripts/build-demo.mjs",
