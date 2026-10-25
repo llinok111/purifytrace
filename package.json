@@ -1,0 +1,77 @@
+{
+  "name": "purifytrace",
+  "version": "0.1.0",
+  "description": "Explainable sanitization audit trail for DOMPurify: what was dropped, why, and what the HTML parser lost before the sanitizer even ran.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./report": {
+      "types": "./types/index.d.ts",
+      "default": "./src/report.js"
+    },
+    "./policy": {
+      "types": "./types/index.d.ts",
+      "default": "./src/policy.js"
+    }
+  },
+  "bin": {
+    "purifytrace": "./bin/purifytrace.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "types",
+    "corpus",
+    "demo",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "corpus": "node scripts/run-corpus.mjs",
+    "bench": "node scripts/bench.mjs",
+    "demo": "node scripts/build-demo.mjs",
+    "test:watch": "node --test --watch test/*.test.mjs",
+    "verify": "npm test && npm run corpus"
+  },
+  "peerDependencies": {
+    "dompurify": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "dompurify": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "dompurify": "^3.4.17",
+    "jsdom": "^26.0.0"
+  },
+  "keywords": [
+    "dompurify",
+    "sanitizer",
+    "audit",
+    "xss",
+    "sarif",
+    "security",
+    "explainability"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llinok111/purifytrace.git"
+  },
+  "homepage": "https://github.com/llinok111/purifytrace#readme",
+  "bugs": {
+    "url": "https://github.com/llinok111/purifytrace/issues"
+  },
+  "types": "./types/index.d.ts"
+}

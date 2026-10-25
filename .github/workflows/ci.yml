@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['18', '20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm test
+      - name: corpus regression
+        run: npm run corpus
+      - name: check the corpus report is unchanged
+        run: git diff --exit-code docs/corpus-report.json
+      - name: demo build
+        run: npm run demo
+      - name: check the demo is unchanged
+        run: git diff --exit-code demo
+
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npm pack
+      - name: install the tarball in a clean project and use it
+        run: |
+          mkdir -p /tmp/consumer && cd /tmp/consumer
+          npm init -y >/dev/null
+          npm install "$GITHUB_WORKSPACE"/purifytrace-*.tgz jsdom >/dev/null
+          node -e "
+            const createDOMPurify = require('dompurify');
+            const { createAuditedSanitizer } = require('purifytrace');
+            const { JSDOM } = require('jsdom');
+            const window = new JSDOM('').window;
+            const s = createAuditedSanitizer({ createDOMPurify, window });
+            const { trail } = s.audit('<img src=x onerror=alert(1)>');
+            if (trail.events.length !== 1) throw new Error('expected one event');
+            if (trail.events[0].target !== 'onerror') throw new Error('wrong target');
+            console.log('tarball smoke test ok');
+          "

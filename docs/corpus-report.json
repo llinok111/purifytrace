@@ -1,0 +1,2430 @@
+{
+  "generatedBy": "npm run corpus",
+  "dompurify": "3.4.17",
+  "purifytrace": "0.1.0",
+  "configs": {
+    "default": {
+      "files": 32,
+      "events": 21,
+      "findings": 1,
+      "highFindings": 0,
+      "upstreamMismatch": 0,
+      "prewalkLosses": 6,
+      "entries": [
+        {
+          "file": "01-inline-script.html",
+          "output": "<div>before</div><div>after</div>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > script",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "02-leading-script.html",
+          "output": "trailing text\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "03-event-handler.html",
+          "output": "<img src=\"/x.png\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "04-uppercase-handler.html",
+          "output": "<img src=\"/x.png\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "05-javascript-href.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "06-js-scheme-obfuscated.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "07-data-html-iframe.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "08-iframe-external.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "09-svg-script.html",
+          "output": "<svg></svg>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > svg > script",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "10-svg-onload.html",
+          "output": "<svg><circle cx=\"1\" cy=\"1\" r=\"1\"></circle></svg>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onload",
+              "on": "circle",
+              "path": "body > svg > circle",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "11-mathml-xlink.html",
+          "output": "<math><mi>x</mi></math>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "xlink:href",
+              "on": "mi",
+              "path": "body > math > mi",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "12-mxss-mglyph.html",
+          "output": "<math><mtext><table></table></mtext></math>",
+          "events": [
+            {
+              "action": "remove",
+              "target": "mglyph",
+              "path": "body > math > mtext > mglyph",
+              "reason": "content-rule",
+              "policyKey": null,
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "13-template-payload.html",
+          "output": "<div><template><img src=\"x\"></template></div>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > div > template > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "14-style-tag.html",
+          "output": "<p>text</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "15-style-attribute.html",
+          "output": "<div style=\"background:url(javascript:alert(1))\">text</div>\n",
+          "events": [],
+          "findings": [
+            {
+              "code": "css-sink",
+              "severity": "low"
+            }
+          ],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "16-form-action.html",
+          "output": "<form><input name=\"q\"></form>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "action",
+              "on": "form",
+              "path": "body > form",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "17-base-tag.html",
+          "output": "<a href=\"x\">link</a>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "18-meta-refresh.html",
+          "output": "<p>x</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "19-object-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "object",
+              "path": "body > object",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "20-embed-src.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "embed",
+              "path": "body > embed",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "21-srcdoc.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "22-entity-encoded.html",
+          "output": "<a>x</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "23-noscript.html",
+          "output": "<p>fallback</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "24-comment-split.html",
+          "output": "ipt&gt;alert(1)ipt&gt;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "scr<!--",
+              "path": "body > scr<!--",
+              "reason": "custom-element-disallowed",
+              "policyKey": "CUSTOM_ELEMENT_HANDLING",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "25-double-encoded.html",
+          "output": "<img src=\"x\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "26-svg-use-data.html",
+          "output": "<svg></svg>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "use",
+              "path": "body > svg > use",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "27-details-ontoggle.html",
+          "output": "<details open=\"\"><summary>s</summary></details>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "ontoggle",
+              "on": "details",
+              "path": "body > details",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "28-benign-article.html",
+          "output": "<article><h2>Title</h2><p>Plain <strong>text</strong> with <a href=\"https://example.com\">link</a>.</p></article>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "29-benign-figure.html",
+          "output": "<figure><img src=\"/a.png\" alt=\"a\"><figcaption>caption</figcaption></figure>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "30-benign-table.html",
+          "output": "<table><thead><tr><th>h</th></tr></thead><tbody><tr><td>v</td></tr></tbody></table>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "31-benign-form.html",
+          "output": "<form action=\"/search\"><label>q<input name=\"q\"></label><button>go</button></form>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "32-benign-code.html",
+          "output": "<pre><code>const a = 1 &lt; 2;</code></pre>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        }
+      ]
+    },
+    "strict": {
+      "files": 32,
+      "events": 44,
+      "findings": 0,
+      "highFindings": 0,
+      "upstreamMismatch": 0,
+      "prewalkLosses": 17,
+      "entries": [
+        {
+          "file": "01-inline-script.html",
+          "output": "beforeafter\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > script",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div[2]",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "02-leading-script.html",
+          "output": "trailing text\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "03-event-handler.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "04-uppercase-handler.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "05-javascript-href.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "06-js-scheme-obfuscated.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "07-data-html-iframe.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "08-iframe-external.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "09-svg-script.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "10-svg-onload.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "11-mathml-xlink.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "math",
+              "path": "body > math",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 2
+        },
+        {
+          "file": "12-mxss-mglyph.html",
+          "output": "",
+          "events": [
+            {
+              "action": "remove",
+              "target": "math",
+              "path": "body > math",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 4
+        },
+        {
+          "file": "13-template-payload.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "template",
+              "path": "body > div > template",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > div > template > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "14-style-tag.html",
+          "output": "<p>text</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "15-style-attribute.html",
+          "output": "text\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "16-form-action.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "form",
+              "path": "body > form",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "input",
+              "path": "body > form > input",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "17-base-tag.html",
+          "output": "<a href=\"x\">link</a>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "18-meta-refresh.html",
+          "output": "<p>x</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "19-object-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "object",
+              "path": "body > object",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "20-embed-src.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "embed",
+              "path": "body > embed",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "21-srcdoc.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "22-entity-encoded.html",
+          "output": "<a>x</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "23-noscript.html",
+          "output": "<p>fallback</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "24-comment-split.html",
+          "output": "ipt&gt;alert(1)ipt&gt;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "scr<!--",
+              "path": "body > scr<!--",
+              "reason": "custom-element-disallowed",
+              "policyKey": "CUSTOM_ELEMENT_HANDLING",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "25-double-encoded.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "26-svg-use-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "27-details-ontoggle.html",
+          "output": "s\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "details",
+              "path": "body > details",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "summary",
+              "path": "body > details > summary",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "28-benign-article.html",
+          "output": "Title<p>Plain <strong>text</strong> with <a href=\"https://example.com\">link</a>.</p>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "article",
+              "path": "body > article",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "h2",
+              "path": "body > article > h2",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "29-benign-figure.html",
+          "output": "caption\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "figure",
+              "path": "body > figure",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > figure > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "figcaption",
+              "path": "body > figure > figcaption",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "30-benign-table.html",
+          "output": "v\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "table",
+              "path": "body > table",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "thead",
+              "path": "body > table > thead",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "tbody",
+              "path": "body > table > tbody",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "tr",
+              "path": "body > table > tbody > tr",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "td",
+              "path": "body > table > tbody > tr > td",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 6,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 3
+        },
+        {
+          "file": "31-benign-form.html",
+          "output": "qgo\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "form",
+              "path": "body > form",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "label",
+              "path": "body > form > label",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "input",
+              "path": "body > form > label > input",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "button",
+              "path": "body > form > button",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 5,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "32-benign-code.html",
+          "output": "const a = 1 &lt; 2;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "pre",
+              "path": "body > pre",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "code",
+              "path": "body > pre > code",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        }
+      ]
+    },
+    "text": {
+      "files": 32,
+      "events": 51,
+      "findings": 0,
+      "highFindings": 0,
+      "upstreamMismatch": 0,
+      "prewalkLosses": 17,
+      "entries": [
+        {
+          "file": "01-inline-script.html",
+          "output": "beforeafter\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > script",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div[2]",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "02-leading-script.html",
+          "output": "trailing text\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "03-event-handler.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "04-uppercase-handler.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "05-javascript-href.html",
+          "output": "click\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "a",
+              "path": "body > a",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "06-js-scheme-obfuscated.html",
+          "output": "click\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "a",
+              "path": "body > a",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "07-data-html-iframe.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "08-iframe-external.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "09-svg-script.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "10-svg-onload.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "11-mathml-xlink.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "math",
+              "path": "body > math",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 2
+        },
+        {
+          "file": "12-mxss-mglyph.html",
+          "output": "",
+          "events": [
+            {
+              "action": "remove",
+              "target": "math",
+              "path": "body > math",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 4
+        },
+        {
+          "file": "13-template-payload.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "template",
+              "path": "body > div > template",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > div > template > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "14-style-tag.html",
+          "output": "text\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "p",
+              "path": "body > p",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "15-style-attribute.html",
+          "output": "text\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "div",
+              "path": "body > div",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "16-form-action.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "form",
+              "path": "body > form",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "input",
+              "path": "body > form > input",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "17-base-tag.html",
+          "output": "link\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "a",
+              "path": "body > a",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "18-meta-refresh.html",
+          "output": "x\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "p",
+              "path": "body > p",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "19-object-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "object",
+              "path": "body > object",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "20-embed-src.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "embed",
+              "path": "body > embed",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "21-srcdoc.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "22-entity-encoded.html",
+          "output": "x\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "a",
+              "path": "body > a",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "23-noscript.html",
+          "output": "fallback\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "p",
+              "path": "body > p",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "24-comment-split.html",
+          "output": "ipt&gt;alert(1)ipt&gt;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "scr<!--",
+              "path": "body > scr<!--",
+              "reason": "custom-element-disallowed",
+              "policyKey": "CUSTOM_ELEMENT_HANDLING",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "25-double-encoded.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "26-svg-use-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "svg",
+              "path": "body > svg",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 2,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "27-details-ontoggle.html",
+          "output": "s\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "details",
+              "path": "body > details",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "summary",
+              "path": "body > details > summary",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "28-benign-article.html",
+          "output": "TitlePlain text with link.\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "article",
+              "path": "body > article",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "h2",
+              "path": "body > article > h2",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "p",
+              "path": "body > article > p",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "strong",
+              "path": "body > article > p > strong",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "a",
+              "path": "body > article > p > a",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 6,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "29-benign-figure.html",
+          "output": "caption\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "figure",
+              "path": "body > figure",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "img",
+              "path": "body > figure > img",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "figcaption",
+              "path": "body > figure > figcaption",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 4,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "30-benign-table.html",
+          "output": "v\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "table",
+              "path": "body > table",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "thead",
+              "path": "body > table > thead",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "tbody",
+              "path": "body > table > tbody",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "tr",
+              "path": "body > table > tbody > tr",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "td",
+              "path": "body > table > tbody > tr > td",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 6,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 3
+        },
+        {
+          "file": "31-benign-form.html",
+          "output": "qgo\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "form",
+              "path": "body > form",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "label",
+              "path": "body > form > label",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "input",
+              "path": "body > form > label > input",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "button",
+              "path": "body > form > button",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 5,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "32-benign-code.html",
+          "output": "const a = 1 &lt; 2;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "pre",
+              "path": "body > pre",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            },
+            {
+              "action": "remove",
+              "target": "code",
+              "path": "body > pre > code",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 3,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        }
+      ]
+    },
+    "noDataAttrs": {
+      "files": 32,
+      "events": 21,
+      "findings": 1,
+      "highFindings": 0,
+      "upstreamMismatch": 0,
+      "prewalkLosses": 6,
+      "entries": [
+        {
+          "file": "01-inline-script.html",
+          "output": "<div>before</div><div>after</div>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > script",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "02-leading-script.html",
+          "output": "trailing text\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "03-event-handler.html",
+          "output": "<img src=\"/x.png\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "04-uppercase-handler.html",
+          "output": "<img src=\"/x.png\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "05-javascript-href.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "06-js-scheme-obfuscated.html",
+          "output": "<a>click</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "07-data-html-iframe.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "08-iframe-external.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "09-svg-script.html",
+          "output": "<svg></svg>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "script",
+              "path": "body > svg > script",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "10-svg-onload.html",
+          "output": "<svg><circle cx=\"1\" cy=\"1\" r=\"1\"></circle></svg>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onload",
+              "on": "circle",
+              "path": "body > svg > circle",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "11-mathml-xlink.html",
+          "output": "<math><mi>x</mi></math>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "xlink:href",
+              "on": "mi",
+              "path": "body > math > mi",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "12-mxss-mglyph.html",
+          "output": "<math><mtext><table></table></mtext></math>",
+          "events": [
+            {
+              "action": "remove",
+              "target": "mglyph",
+              "path": "body > math > mtext > mglyph",
+              "reason": "content-rule",
+              "policyKey": null,
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "13-template-payload.html",
+          "output": "<div><template><img src=\"x\"></template></div>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > div > template > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "14-style-tag.html",
+          "output": "<p>text</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "15-style-attribute.html",
+          "output": "<div style=\"background:url(javascript:alert(1))\">text</div>\n",
+          "events": [],
+          "findings": [
+            {
+              "code": "css-sink",
+              "severity": "low"
+            }
+          ],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "16-form-action.html",
+          "output": "<form><input name=\"q\"></form>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "action",
+              "on": "form",
+              "path": "body > form",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "17-base-tag.html",
+          "output": "<a href=\"x\">link</a>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "18-meta-refresh.html",
+          "output": "<p>x</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "19-object-data.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "object",
+              "path": "body > object",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "20-embed-src.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "embed",
+              "path": "body > embed",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "21-srcdoc.html",
+          "output": "\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "iframe",
+              "path": "body > iframe",
+              "reason": "tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS (default)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "22-entity-encoded.html",
+          "output": "<a>x</a>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "href",
+              "on": "a",
+              "path": "body > a",
+              "reason": "uri-scheme-blocked",
+              "policyKey": "ALLOWED_URI_REGEXP",
+              "confidence": "inferred"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "23-noscript.html",
+          "output": "<p>fallback</p>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 1
+        },
+        {
+          "file": "24-comment-split.html",
+          "output": "ipt&gt;alert(1)ipt&gt;\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "scr<!--",
+              "path": "body > scr<!--",
+              "reason": "custom-element-disallowed",
+              "policyKey": "CUSTOM_ELEMENT_HANDLING",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "25-double-encoded.html",
+          "output": "<img src=\"x\">\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "onerror",
+              "on": "img",
+              "path": "body > img",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "26-svg-use-data.html",
+          "output": "<svg></svg>\n",
+          "events": [
+            {
+              "action": "remove",
+              "target": "use",
+              "path": "body > svg > use",
+              "reason": "namespace-tag-not-allowed",
+              "policyKey": "ALLOWED_TAGS",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "27-details-ontoggle.html",
+          "output": "<details open=\"\"><summary>s</summary></details>\n",
+          "events": [
+            {
+              "action": "strip-attribute",
+              "target": "ontoggle",
+              "on": "details",
+              "path": "body > details",
+              "reason": "event-handler-attribute",
+              "policyKey": "ALLOWED_ATTR (event handlers are never default-allowed)",
+              "confidence": "confirmed"
+            }
+          ],
+          "findings": [],
+          "upstreamRecords": 1,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "28-benign-article.html",
+          "output": "<article><h2>Title</h2><p>Plain <strong>text</strong> with <a href=\"https://example.com\">link</a>.</p></article>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "29-benign-figure.html",
+          "output": "<figure><img src=\"/a.png\" alt=\"a\"><figcaption>caption</figcaption></figure>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "30-benign-table.html",
+          "output": "<table><thead><tr><th>h</th></tr></thead><tbody><tr><td>v</td></tr></tbody></table>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "31-benign-form.html",
+          "output": "<form action=\"/search\"><label>q<input name=\"q\"></label><button>go</button></form>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        },
+        {
+          "file": "32-benign-code.html",
+          "output": "<pre><code>const a = 1 &lt; 2;</code></pre>\n",
+          "events": [],
+          "findings": [],
+          "upstreamRecords": 0,
+          "upstreamMismatch": 0,
+          "prewalkLosses": 0
+        }
+      ]
+    }
+  }
+}
