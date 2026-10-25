@@ -280,16 +280,38 @@ parser discarded before the sanitizer saw them — invisible to
 
 ---
 
-## 11. Test suite
+## 11. Output-equality acceptance gate
+
+The central safety claim of purifytrace is that the audit layer never changes
+what DOMPurify produces. That is checked mechanically, not asserted:
+
+```bash
+$ npm run verify:equivalence
+output-equality check: 252 comparisons across 6 configs
+  mismatches: 0
+  every audited output is byte-identical to plain DOMPurify
+```
+
+252 comparisons = 42 payloads (32 corpus files + 10 stress payloads) × 6
+configurations (`default`, `strict`, `text`, `noDataAttrs`, `svgProfile`,
+`safeTemplates`). Each payload is sanitized by a plain DOMPurify instance and
+by the audited sanitizer with the same config, and the two outputs are
+compared byte for byte.
+
+This gate runs in CI on every matrix entry.
+
+---
+
+## 12. Test suite
 
 ```bash
 $ npm test
-# tests 53
-# pass 53
+# tests 61
+# pass 61
 # fail 0
 ```
 
-The suite covers: reason attribution per config key, subtree accounting,
+The suite covers: packaging metadata vs README claims, reason attribution per config key, subtree accounting,
 re-parenting by `KEEP_CONTENT`, the pre-walk loss, the risk scan, output
 equality with plain DOMPurify on a payload corpus, policy diffing, CLI exit
 codes, JSON/SARIF output shape, `IN_PLACE` mode, an unsupported DOM, unicode

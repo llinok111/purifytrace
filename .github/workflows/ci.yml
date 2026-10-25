@@ -20,6 +20,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci
       - run: npm test
+      - name: output-equality against plain DOMPurify
+        run: npm run verify:equivalence
       - name: corpus regression
         run: npm run corpus
       - name: check the corpus report is unchanged
@@ -38,19 +40,46 @@ jobs:
           node-version: '22'
       - run: npm ci
       - run: npm pack
-      - name: install the tarball in a clean project and use it
+      - name: install the tarball in a clean project and use it (ESM)
         run: |
           mkdir -p /tmp/consumer && cd /tmp/consumer
           npm init -y >/dev/null
           npm install "$GITHUB_WORKSPACE"/purifytrace-*.tgz jsdom >/dev/null
-          node -e "
-            const createDOMPurify = require('dompurify');
-            const { createAuditedSanitizer } = require('purifytrace');
-            const { JSDOM } = require('jsdom');
-            const window = new JSDOM('').window;
-            const s = createAuditedSanitizer({ createDOMPurify, window });
-            const { trail } = s.audit('<img src=x onerror=alert(1)>');
-            if (trail.events.length !== 1) throw new Error('expected one event');
-            if (trail.events[0].target !== 'onerror') throw new Error('wrong target');
-            console.log('tarball smoke test ok');
-          "
+          cat > smoke.mjs <<'EOF'
+          import createDOMPurify from 'dompurify';
+          import { JSDOM } from 'jsdom';
+          import { createAuditedSanitizer } from 'purifytrace';
+
+          const window = new JSDOM('').window;
+          const sanitizer = createAuditedSanitizer({ createDOMPurify, window });
+          const { trail } = sanitizer.audit('<img src=x onerror=alert(1)>');
+          if (trail.events.length !== 1) throw new Error('expected one event');
+          if (trail.events[0].target !== 'onerror') throw new Error('wrong target');
+          if (trail.events[0].reason.confidence !== 'confirmed') throw new Error('wrong confidence');
+          console.log('ESM tarball smoke test ok');
+          EOF
+          node smoke.mjs
+      - name: install the tarball in a clean project and use it (CJS)
+        run: |
+          cd /tmp/consumer
+          cat > smoke.cjs <<'EOF'
+          // DOMPurify's CJS build auto-instantiates at load time and looks up
+          // `window` with `typeof`. A `const window` declared later in the same
+          // scope is in TDZ and `typeof` throws, so the DOM must exist first.
+          const { JSDOM } = require('jsdom');
+          const window = new JSDOM('').window;
+          const createDOMPurify = require('dompurify');
+          const { createAuditedSanitizer } = require('purifytrace');
+
+          const sanitizer = createAuditedSanitizer({ createDOMPurify, window });
+          const { trail } = sanitizer.audit('<img src=x onerror=alert(1)>');
+          if (trail.events.length !== 1) throw new Error('expected one event');
+          if (trail.events[0].target !== 'onerror') throw new Error('wrong target');
+          console.log('CJS tarball smoke test ok');
+          EOF
+          node smoke.cjs
+      - name: the CLI works from the installed tarball
+        run: |
+          cd /tmp/consumer
+          printf '<img src=x onerror=alert(1)>' > payload.html
+          npx --no-install purifytrace payload.html --format json | head -5

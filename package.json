@@ -42,7 +42,8 @@
     "bench": "node scripts/bench.mjs",
     "demo": "node scripts/build-demo.mjs",
     "test:watch": "node --test --watch test/*.test.mjs",
-    "verify": "npm test && npm run corpus"
+    "verify": "npm test && npm run corpus && npm run verify:equivalence",
+    "verify:equivalence": "node scripts/verify-equivalence.mjs"
   },
   "peerDependencies": {
     "dompurify": ">=3.0.0"

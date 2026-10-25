@@ -110,6 +110,34 @@ required: use `jsdom` on the server, or the browser's own `window`.
 npm install jsdom   # server-side only
 ```
 
+### A note on loading order (upstream constraint, not a purifytrace bug)
+
+DOMPurify's CommonJS build calls `createDOMPurify()` at module load time, and
+its global lookup is `typeof window === "undefined" ? null : window`. In a
+CommonJS script, `typeof` on a **temporally dead zone** binding throws instead
+of returning `"undefined"` — so this fails:
+
+```js
+const createDOMPurify = require('dompurify'); // ← throws ReferenceError
+const window = new JSDOM('').window;          // ← `window` is in TDZ here
+```
+
+Two ways out:
+
+```js
+// A. create the DOM first, then require DOMPurify
+const { JSDOM } = require('jsdom');
+const window = new JSDOM('').window;
+const createDOMPurify = require('dompurify'); // fine
+
+// B. use the ESM build, which does not auto-instantiate
+import createDOMPurify from 'dompurify';
+```
+
+In ESM there is no TDZ problem at all — the import is hoisted, but the
+auto-instantiation path is not taken the same way. purifytrace itself is
+unaffected either way; it never imports DOMPurify for you.
+
 ---
 
 ## Library usage
@@ -347,11 +375,25 @@ overhead profile as the plain DOMPurify call plus a hook dispatch.
 
 ```bash
 npm install
-npm test          # 53 tests
-npm run corpus    # regenerate docs/corpus-report.json
-npm run bench     # overhead measurement
-npm run demo      # rebuild demo/
-npm run verify    # test + corpus
+npm test                    # 61 tests
+npm run corpus              # regenerate docs/corpus-report.json
+npm run verify:equivalence  # audited output == plain DOMPurify, byte for byte
+npm run bench               # overhead measurement
+npm run demo                # rebuild demo/
+npm run verify              # test + corpus + equivalence
+```
+
+### The equivalence check
+
+`npm run verify:equivalence` is the acceptance gate for the central safety
+claim. It sanitizes every corpus payload plus ten extra stress payloads with
+a plain DOMPurify instance and with the audited sanitizer, under six
+configurations, and requires the outputs to be byte-identical:
+
+```
+output-equality check: 252 comparisons across 6 configs
+  mismatches: 0
+  every audited output is byte-identical to plain DOMPurify
 ```
 
 ### Corpus
